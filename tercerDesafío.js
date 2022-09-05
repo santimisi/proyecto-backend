@@ -1,7 +1,9 @@
 
-import { segundoDesafio } from "./segundoDesafio.js";
+import { Contenedor } from "./segundoDesafio.js";
+import { item1, item2, item3 } from "./productos.js";
 
 const express = require ('express')
+
 const app = express();
 
 const PORT = process.env.PORT || 8080;
