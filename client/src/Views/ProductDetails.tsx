@@ -1,19 +1,45 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { RotatingLines } from "react-loader-spinner";
+import { useCart } from "react-use-cart";
 
 // como este hook puede utilizarse para hacer un get, solo modifico el URL y jalo solo un item
 import { useApiGet, TApiResponse } from "../utils/fetchProducts";
 import AdminButtons from "../Components/AdminButtons";
 import { useGlobalContext } from "../utils/globalContext";
+import Swal from "sweetalert2";
 
 export default function ProductDetails() {
   const { id } = useParams<any>();
   const { userTypeState } = useGlobalContext();
+  // libreria para agragar al carrito
+  const { addItem } = useCart();
   //este es un get al API listando todos los productos
   const { data, isLoading }: TApiResponse = useApiGet(
     `${process.env.REACT_APP_PRODUCT_API_ROUTE}/${id}`
   );
+
+  const handleAddtoCart = (item: any) => {
+    item.id = item._id;
+    try {
+      addItem(item);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Item agregado a carrito",
+        showConfirmButton: false,
+        timer: 1000
+      });
+    } catch (e) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Algo salio mal al agregar item al carrito",
+        showConfirmButton: false,
+        timer: 1000
+      });
+    }
+  };
   return (
     <>
       {isLoading ? (
@@ -48,7 +74,12 @@ export default function ProductDetails() {
                   <span className="title-font font-medium text-2xl text-gray-900">
                     ${data.price}.00 MXN
                   </span>
-                  <button className="flex ml-auto btn">Comprar</button>
+                  <button
+                    className="flex ml-auto btn"
+                    onClick={() => handleAddtoCart(data)}
+                  >
+                    Add To Cart
+                  </button>
                 </div>
                 {userTypeState === "Admin" && (
                   <div className="mt-4">

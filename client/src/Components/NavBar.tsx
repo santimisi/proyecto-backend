@@ -1,13 +1,9 @@
 import React, { ReactElement, useState } from "react";
 import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
 import agave from "../Assets/images/agave.png";
-// import { useCart } from "react-use-cart";
 import CartModal from "./CartModal";
 
 export default function NavBar(): ReactElement {
-  // const navigate = useNavigate();
-  // const { isEmpty, items } = useCart();
   const handleOpen = () => {
     document.body.style.overflow = "hidden";
     setModalIsOpen(true);

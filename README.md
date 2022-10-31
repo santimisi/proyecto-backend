@@ -32,19 +32,20 @@ Así lo puedes instalar
    cd client
    npm install
    ```
-3. Instalar Paquetería en Server
+3. Crear archivo .env similar al .env.example dentro de la carpeta "server", pssst el user y pass son "dev" y "dev"
+4. Instalar Paquetería en Server
    ```sh
    cd server
    npm install
    ```
-4. Iniciar Server
+5. Iniciar Server
 
    ```sh
    cd server
    npm start
    ```
 
-5. Iniciar Client
+6. Iniciar Client
    ```sh
    cd client
    npm start
@@ -55,7 +56,7 @@ Así lo puedes instalar
 ## Roadmap
 
 - [x] Entregable 1
-- [ ] Entregable 2
+- [x] Entregable 2
 - [ ] Entregable 3
 - [ ] Entregable 4
 - [ ] Entregable 5

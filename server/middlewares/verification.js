@@ -1,5 +1,5 @@
 const verification = {
-	// este middleware valida si es admin, si lo es puede eacceder a la ruta, si no, manda error
+	// este middleware valida si es admin, si lo es puede acceder a la ruta, si no, manda error
 	isAdmin: (req, res, next) => {
 		const currentUserStatus = JSON.parse(req.headers.isadmin);
 		if (currentUserStatus === true) {

@@ -25,7 +25,7 @@ export default function AdminButtons({
   const handleErease = () => {
     try {
       axios
-        .delete(`${process.env.REACT_APP_PRODUCT_API_ROUTE}/${element.id}`, {
+        .delete(`${process.env.REACT_APP_PRODUCT_API_ROUTE}/${element._id}`, {
           headers: {
             isadmin: JSON.stringify(IsAdminVerificator(userTypeState))
           }

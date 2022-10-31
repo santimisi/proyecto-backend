@@ -84,7 +84,7 @@ export default function EditModal({
     //lo mismo que tengo en el formulario principal, todo el modelado y el submit handler igual, quizas despues lo modularize
     axios
       .put(
-        `${process.env.REACT_APP_PRODUCT_API_ROUTE}/${element.id}`,
+        `${process.env.REACT_APP_PRODUCT_API_ROUTE}/${element._id}`,
         responseBody,
         {
           headers: {
