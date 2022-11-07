@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="-mx-4 flex flex-wrap md:justify-between">
           <div className="w-full px-4 sm:w-2/3 lg:w-3/12">
             <div className="mb-10 w-full">
-              <Link to="/" className="flex items-center">
+              <Link to="/shop" className="flex items-center">
                 <img src={agave} className="w-12 h-12" alt="main logo" />
                 <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
                   Agave

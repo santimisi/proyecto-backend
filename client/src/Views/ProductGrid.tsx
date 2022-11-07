@@ -3,22 +3,13 @@ import { RotatingLines } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import { useCart } from "react-use-cart";
 import { navigateToRoute } from "../App";
-import AdminButtons from "../Components/AdminButtons";
-import Form from "../Components/Form";
 import Hero from "../Components/Hero";
+import { itemType } from "../utils/adminUtils";
 
 // custom hook that catches all the dfetched data loading state of the fetch
 import { useApiGet, TApiResponse } from "../utils/fetchProducts";
 
-interface Props {
-  userType: string;
-  setUserType: (type: string) => void;
-}
-
-export default function ProductGrid({
-  userType,
-  setUserType
-}: Props): ReactElement {
+export default function ProductGrid(): ReactElement {
   // custom hook para el fetch, el URL que se pasa es el del GET para traer todos los items
   const { data, isLoading }: TApiResponse = useApiGet(
     `${process.env.REACT_APP_PRODUCT_API_ROUTE}`
@@ -27,19 +18,17 @@ export default function ProductGrid({
   //libreria de context para carrito para auziliarme
   const { addItem } = useCart();
 
-  const handleAddCarrito = (item: any) => {
+  const handleAddCarrito = (item: itemType) => {
     item.id = item._id;
     addItem(item);
-    console.log(item);
   };
   return (
     <div className="bg-white">
-      <Hero userType={userType} setUserType={setUserType} />
+      <Hero />
       <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-        {userType === "Admin" && <Form />}
-        <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+        <>
           {isLoading ? (
-            <div className="max-w-xl h-[500px] flex items-center justify-center">
+            <div className="w-full h-[600px] flex items-center justify-center">
               <RotatingLines
                 strokeColor="gray"
                 strokeWidth="5"
@@ -49,8 +38,8 @@ export default function ProductGrid({
               />
             </div>
           ) : (
-            <>
-              {data.map((item: any, idx: number) => {
+            <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 w-full">
+              {data.map((item: itemType, idx: number) => {
                 return (
                   <div className="group" key={idx}>
                     <Link to={navigateToRoute.goToProductDetails(item._id)}>
@@ -85,13 +74,12 @@ export default function ProductGrid({
                       {" "}
                       Agregar al Carrito
                     </button>
-                    {userType === "Admin" && <AdminButtons element={item} />}
                   </div>
                 );
               })}
-            </>
+            </div>
           )}
-        </div>
+        </>
       </div>
     </div>
   );

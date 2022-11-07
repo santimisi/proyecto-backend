@@ -5,13 +5,10 @@ import { useCart } from "react-use-cart";
 
 // como este hook puede utilizarse para hacer un get, solo modifico el URL y jalo solo un item
 import { useApiGet, TApiResponse } from "../utils/fetchProducts";
-import AdminButtons from "../Components/AdminButtons";
-import { useGlobalContext } from "../utils/globalContext";
 import Swal from "sweetalert2";
 
 export default function ProductDetails() {
   const { id } = useParams<any>();
-  const { userTypeState } = useGlobalContext();
   // libreria para agragar al carrito
   const { addItem } = useCart();
   //este es un get al API listando todos los productos
@@ -81,11 +78,6 @@ export default function ProductDetails() {
                     Add To Cart
                   </button>
                 </div>
-                {userTypeState === "Admin" && (
-                  <div className="mt-4">
-                    <AdminButtons element={data} />
-                  </div>
-                )}
               </div>
             </div>
           </div>

@@ -81,8 +81,7 @@ export default function CartStaticModal(): ReactElement {
             />
           </div>
           <label htmlFor="terms" className="text-sm text-gray-500">
-            I have read the terms and conditions and agree to the sale of my
-            personal information to the highest bidder.
+            I have read the terms and conditions and agree to the purchase
           </label>
         </div>
       </form>

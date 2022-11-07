@@ -34,7 +34,7 @@ export default function CartModal({
           document.body.style.overflow = "";
           emptyCart();
           setModalIsOpen(false);
-          navigate("/");
+          navigate("/shop");
         })
         .catch((response) => {
           Swal.fire({
