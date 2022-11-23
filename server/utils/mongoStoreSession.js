@@ -16,7 +16,7 @@ export const sessionOptions = {
 	name: 'session-id',
 	store: sessionStore,
 	cookie: {
-		maxAge: 1000 * 60 * 60,
+		maxAge: 1000 * 60 * 10, // 10 minutos
 		secure: false,
 	},
 	resave: true,

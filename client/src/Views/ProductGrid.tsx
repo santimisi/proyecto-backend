@@ -2,6 +2,8 @@ import React, { ReactElement } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import { useCart } from "react-use-cart";
+import Swal from "sweetalert2";
+
 import { navigateToRoute } from "../App";
 import Hero from "../Components/Hero";
 import { itemType } from "../utils/adminUtils";
@@ -19,6 +21,13 @@ export default function ProductGrid(): ReactElement {
   const { addItem } = useCart();
 
   const handleAddCarrito = (item: itemType) => {
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: `Item: ${item.nombre} agregado a carrito`,
+      showConfirmButton: false,
+      timer: 1500
+    });
     item.id = item._id;
     addItem(item);
   };

@@ -4,7 +4,7 @@ type Props = {
   primary: string;
   secondary: string;
   icon: ReactNode;
-  quantity: number;
+  quantity: number | string;
   title: string;
 };
 

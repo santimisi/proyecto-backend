@@ -1,7 +1,9 @@
+import { ContenedorLogs } from '../DAO/ContenedorLogs.js';
 import { ContenedorProductos } from '../DAO/ContenedorProductos.js';
 
 // este contenedor contiene todas las funciones de mongoos que se van a ocupar en carrito y en productos
 const contenedorProductos = new ContenedorProductos();
+const contenedorLogs = new ContenedorLogs();
 
 // esto es solo un test
 export const ping = async (req, res) => {
@@ -35,6 +37,11 @@ export const getOne = async (req, res) => {
 export const addOne = async (req, res) => {
 	try {
 		await contenedorProductos.saveOneProduct(req.body);
+		await contenedorLogs.saveOneLog({
+			title: `"Se agrego un item nuevo:`,
+			descripcion: req.body.nombre,
+			link: 'url del producto en fron',
+		});
 		return res
 			.status(201)
 			.json({ status: 'OK', message: 'Item Agregado Satisfactoriamente' });

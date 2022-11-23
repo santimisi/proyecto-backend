@@ -1,17 +1,17 @@
 import React, { ReactElement, useState, useEffect } from "react";
 import { itemType, sortArrayDesAsc } from "../../utils/adminUtils";
 
-export default function ScrollDownList({ allItemsArray }: any): ReactElement {
-  const [items, setItems] = useState<itemType[]>(allItemsArray);
+export default function ScrollDownList({ dataArray }: any): ReactElement {
+  const [items, setItems] = useState<itemType[]>(dataArray);
 
   useEffect(() => {
-    setItems(sortArrayDesAsc(allItemsArray, "0"));
-  }, [allItemsArray]);
+    setItems(sortArrayDesAsc(dataArray, "0"));
+  }, [dataArray]);
 
   const onSelectionChange = (event: React.FormEvent<HTMLSelectElement>) => {
     event.preventDefault();
     const sortDirection = event.currentTarget.value;
-    setItems(sortArrayDesAsc(allItemsArray, sortDirection));
+    setItems(sortArrayDesAsc(dataArray, sortDirection));
   };
   return (
     <div className="row-span-3 bg-white shadow rounded-lg">
@@ -26,8 +26,8 @@ export default function ScrollDownList({ allItemsArray }: any): ReactElement {
           <option value={1}>Ascending</option>
         </select>
       </div>
-      <div className="overflow-y-auto" style={{ maxHeight: "24rem" }}>
-        <ul className="p-6 space-y-6">
+      <div className="overflow-y-auto h-full" style={{ maxHeight: "54rem" }}>
+        <ul className="p-6 space-y-6 ">
           {items.map((item: itemType) => {
             return (
               <li className="flex items-center" key={item._id}>

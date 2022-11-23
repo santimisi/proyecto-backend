@@ -1,7 +1,9 @@
 // import { getNewCartId, removeObjectWithId } from '../utils/carritoUtils.js';
 import { ContenedorCarritos } from '../DAO/ContenedorCarritos.js';
+import { ContenedorLogs } from '../DAO/ContenedorLogs.js';
 
 const contenedorCarritos = new ContenedorCarritos();
+const contenedorLogs = new ContenedorLogs();
 
 // esto es solo un test, no borrar
 export const ping = async (req, res) => {
@@ -52,6 +54,11 @@ export const createNewCart = async (req, res) => {
 	} else {
 		try {
 			const newCartId = await contenedorCarritos.saveOneCart(req.body);
+			await contenedorLogs.saveOneLog({
+				title: `"Se agrego un nuevo carrito:`,
+				descripcion: 'nuevo carrito',
+				link: 'url del producto en front',
+			});
 			// cuando se crea un carrito regresa un ID para que el usuario lo guarde
 			res
 				.status(200)
@@ -102,6 +109,11 @@ export const addProductInExistingCart = async (req, res) => {
 				requestedCartId,
 				incomingItem
 			);
+			await contenedorLogs.saveOneLog({
+				title: 'Se agrego un nuevo item existente a carrito:',
+				descripcion: 'nuevo carrito',
+				link: 'url del producto en front',
+			});
 			res.status(200).json({
 				status: 'success',
 				message:
@@ -112,6 +124,11 @@ export const addProductInExistingCart = async (req, res) => {
 				requestedCartId,
 				incomingItem
 			);
+			await contenedorLogs.saveOneLog({
+				title: 'Se agrego un nuevo item no existente en carrito a carrito:',
+				descripcion: 'nuevo carrito',
+				link: 'url del producto en front',
+			});
 			res.status(200).json({
 				status: 'success',
 				message: 'item no existente en carrito agregado',

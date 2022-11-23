@@ -4,7 +4,7 @@ dotenv.config();
 
 export const corsConfig = {
 	origin: process.env.CONNECTION_FRONT_END_PORT,
-	methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+	methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 	credentials: true,
 };
 

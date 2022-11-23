@@ -14,6 +14,7 @@ const ProductosSchema = new Schema({
 	type: String,
 	alcohol: Number,
 	region: String,
+	sold: Number,
 });
 
 const ProductosModel = mongoose.model('Productos', ProductosSchema);
