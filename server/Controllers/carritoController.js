@@ -48,6 +48,7 @@ export const getOneCartItems = async (req, res) => {
 // esta api call es llamada en <Carrito Modal />
 export const createNewCart = async (req, res) => {
 	const newCart = req.body;
+	console.log(newCart);
 	// verifica que el nuevo carrito no venga vacio
 	if (newCart.length < 1 || Object.keys(newCart).length === 0) {
 		res.status(500).json({ status: 'error', message: 'Tu carrito esta vacio' });
@@ -55,8 +56,8 @@ export const createNewCart = async (req, res) => {
 		try {
 			const newCartId = await contenedorCarritos.saveOneCart(req.body);
 			await contenedorLogs.saveOneLog({
-				title: `"Se agrego un nuevo carrito:`,
-				descripcion: 'nuevo carrito',
+				title: `Se agrego un nuevo carrito`,
+				descripcion: newCartId,
 				link: 'url del producto en front',
 			});
 			// cuando se crea un carrito regresa un ID para que el usuario lo guarde
@@ -72,13 +73,16 @@ export const createNewCart = async (req, res) => {
 	}
 };
 
-// a partir de aqui no se pueden probar estos endpoints ya que no hay front end para ellas,
-// se tienen que probar con POSTMAN o INSOMNIA
-// url para probar http://localhost:8080/api/carrito/635aa37779a14e788c1c773a
+// todo se puede probar
 export const deleteCart = async (req, res) => {
 	const { id } = req.params;
 	try {
 		await contenedorCarritos.deleteOneCart(id);
+		await contenedorLogs.saveOneLog({
+			title: `Se borro un carrito`,
+			descripcion: id,
+			link: 'url del producto en front',
+		});
 		res.status(200).json({ status: 'success', message: 'carrito borrado' });
 	} catch (e) {
 		res.status(500).json({
@@ -111,7 +115,7 @@ export const addProductInExistingCart = async (req, res) => {
 			);
 			await contenedorLogs.saveOneLog({
 				title: 'Se agrego un nuevo item existente a carrito:',
-				descripcion: 'nuevo carrito',
+				descripcion: `item: ${incomingItem._id}, carrito Id: ${requestedCartId}`,
 				link: 'url del producto en front',
 			});
 			res.status(200).json({
@@ -125,8 +129,8 @@ export const addProductInExistingCart = async (req, res) => {
 				incomingItem
 			);
 			await contenedorLogs.saveOneLog({
-				title: 'Se agrego un nuevo item no existente en carrito a carrito:',
-				descripcion: 'nuevo carrito',
+				title: 'Se agrego un nuevo item NO existente a carrito:',
+				descripcion: `item: ${incomingItem._id}, carrito Id: ${requestedCartId}`,
 				link: 'url del producto en front',
 			});
 			res.status(200).json({
@@ -149,6 +153,11 @@ export const deleteItemInCart = async (req, res) => {
 	const itemId = req.params.id_prod;
 	try {
 		await contenedorCarritos.deleteOneItemInCart(requestedCartId, itemId);
+		await contenedorLogs.saveOneLog({
+			title: 'Se borro un item en carrito:',
+			descripcion: `item: ${itemId}, carrito Id: ${requestedCartId}`,
+			link: 'url del producto en front',
+		});
 		res.status(200).json({
 			status: 'success',
 			message: 'item borrado con exito',

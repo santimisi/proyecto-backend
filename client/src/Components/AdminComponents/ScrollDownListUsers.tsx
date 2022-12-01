@@ -9,7 +9,7 @@ export default function ScrollDownListUsers({
   dataArray
 }: Props): ReactElement {
   const [users, setUsers] = useState<Usertype[]>(dataArray);
-
+  // creo que esta de mas pero aun asi lo voy a dejar por si luego lo ocupo
   useEffect(() => {
     setUsers(dataArray);
   }, [dataArray]);
@@ -27,7 +27,7 @@ export default function ScrollDownListUsers({
                 <div className="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
                   <img src={user.profilePicture} alt="Not Found" />
                 </div>
-                <span className="text-gray-600">{user.username}</span>
+                <span className="text-gray-600">{user.userName}</span>
                 <span className="ml-auto font-semibold">
                   isAdmin: {user.isAdmin ? "true" : "false"}
                 </span>

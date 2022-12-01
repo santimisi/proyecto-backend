@@ -21,7 +21,6 @@ export default function Login({ setUserInfo }: any): ReactElement {
   const onSubmitHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // global context pega aqui
-    setUserInfo(state);
     try {
       const { data: response } = await axios.post(
         `${process.env.REACT_APP_LOGIN_URL}`,
@@ -30,6 +29,7 @@ export default function Login({ setUserInfo }: any): ReactElement {
           withCredentials: true
         }
       );
+      console.log(response);
       if (response.status === "success") {
         Swal.fire({
           position: "top-end",
@@ -39,11 +39,15 @@ export default function Login({ setUserInfo }: any): ReactElement {
           timer: 1500
         });
         if (response.type === "admin") {
+          setUserInfo(response.userData);
+
           navigate("/dsh");
+
           window.location.reload();
         } else {
+          setUserInfo(response.userData);
           navigate("/shop");
-          window.location.reload();
+          // window.location.reload();
         }
       }
     } catch (e: any) {
@@ -59,9 +63,9 @@ export default function Login({ setUserInfo }: any): ReactElement {
 
   return (
     <>
-      <div className="flex items-center justify-center min-h-screen bg-blue-300">
-        <div className="relative flex flex-col m-6 space-y-10 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0 md:m-0">
-          <div className="p-6 md:p-20 rounded-2xl">
+      <div className="flex items-center justify-center min-h-screen bg-blue-300 p-10">
+        <div className="relative flex flex-col m-6 space-y-10 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0 md:m-0 ">
+          <div className="p-6 md:p-10 rounded-2xl">
             <h2 className=" mb-5 text-4xl font-bold">Inicia Sesión</h2>
             <p className="max-w-sm mb-12 font-sans font-light text-gray-600">
               Accede a tu cuenta para poder comprar botellas de mezcal al mejor

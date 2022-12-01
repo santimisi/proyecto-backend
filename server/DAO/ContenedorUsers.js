@@ -30,4 +30,12 @@ export class ContenedorUsers {
 			throw new Error('Algo salio mal al buscar un usuario usuario');
 		}
 	}
+
+	async editOneUser(newUserData, _id) {
+		try {
+			await UsersModel.updateOne({ _id }, newUserData);
+		} catch (e) {
+			throw new Error('algo sali mal modificar typo de cuenta');
+		}
+	}
 }

@@ -115,18 +115,20 @@ const App = () => {
                 );
               })}
             </Route>
-            <Route path={ROUTE_PATHS.Dashboard} element={<AdminLayout />}>
-              {adminRouting.map((item) => {
-                return (
-                  <Route
-                    path={item.path}
-                    element={item.element}
-                    key={item.path}
-                  />
-                );
-              })}
-            </Route>
-            <Route path="*" element={<NotFound />} />
+            {userInfo?.isAdmin ? (
+              <Route path={ROUTE_PATHS.Dashboard} element={<AdminLayout />}>
+                {adminRouting.map((item) => {
+                  return (
+                    <Route
+                      path={item.path}
+                      element={item.element}
+                      key={item.path}
+                    />
+                  );
+                })}
+              </Route>
+            ) : null}
+            {/* <Route path="*" element={<NotFound />} /> */}
           </Routes>
         </BrowserRouter>
       </CartProvider>

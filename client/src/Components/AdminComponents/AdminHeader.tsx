@@ -17,8 +17,6 @@ export default function AdminHeader({ activityLogs }: Props): ReactElement {
   const navigate = useNavigate();
   const { userInfo, loadingUserInfo } = useGlobalContext();
 
-  console.log(userInfo);
-
   const handleLogOut = async () => {
     try {
       const { data: response } = await axios.get(
@@ -84,11 +82,13 @@ export default function AdminHeader({ activityLogs }: Props): ReactElement {
             <span className="sr-only">User Menu</span>
             <div className="hidden md:flex md:flex-col md:items-end md:leading-tight">
               <span className="font-semibold">{userInfo.userName}</span>
-              <span className="text-sm text-gray-600">Admin</span>
+              <span className="text-sm text-gray-600">
+                {userInfo.isAuth ? "Admin" : "Client"}
+              </span>
             </div>
             <span className="h-12 w-12 ml-2 sm:ml-3 mr-2 bg-gray-100 rounded-full overflow-hidden">
               <img
-                src="https://randomuser.me/api/portraits/men/1.jpg"
+                src={userInfo.userData.profilePicture}
                 alt="user profile "
                 className="h-full w-full object-cover"
               />

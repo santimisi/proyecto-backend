@@ -58,6 +58,11 @@ export const modifyOne = async (req, res) => {
 	const { id } = req.params;
 	try {
 		await contenedorProductos.editOneProduct(newItemData, id);
+		await contenedorLogs.saveOneLog({
+			title: `Se modifico un item:`,
+			descripcion: id,
+			link: 'url del producto en fron',
+		});
 		res
 			.status(200)
 			.json({ status: 'OK', message: 'Item Editado Satisfactoriamente' });
@@ -73,6 +78,11 @@ export const deleteOne = async (req, res) => {
 	const { id } = req.params;
 	try {
 		await contenedorProductos.deleteOneProduct(id);
+		await contenedorLogs.saveOneLog({
+			title: `Se elimino un item:`,
+			descripcion: id,
+			link: 'url del producto en fron',
+		});
 		res
 			.status(200)
 			.json({ status: 'OK', message: 'Item Borrado Satisfactoriamente' });

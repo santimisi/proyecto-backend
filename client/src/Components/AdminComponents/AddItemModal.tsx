@@ -130,7 +130,7 @@ export default function AddItemModal({ title }: Props) {
       <div className="flex flex-wrap -mx-3 mb-6">
         {inputs.map((input) => {
           return (
-            <div className={input.style}>
+            <div className={input.style} key={input.name}>
               <label className="input-lable" htmlFor={input.name}>
                 {input.name}
               </label>

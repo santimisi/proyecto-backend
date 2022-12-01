@@ -17,7 +17,7 @@ export default function NotFound(): ReactElement {
                 Puede ser que se haya eliminado o no exista.
               </p>
               <a
-                href="/"
+                href="/shop"
                 className="inline-block rounded-lg border border-white px-8 py-3 text-center text-base font-semibold text-white transition hover:bg-white hover:text-blue-500"
               >
                 Ir a Home

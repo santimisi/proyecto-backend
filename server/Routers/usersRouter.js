@@ -6,6 +6,7 @@ import {
 	login,
 	isLogged,
 	logout,
+	convert,
 } from '../Controllers/usersController.js';
 
 const usersRouter = express.Router();
@@ -16,5 +17,6 @@ usersRouter.post('/signin', signIn);
 usersRouter.post('/login', login);
 usersRouter.get('/islogged', isLogged);
 usersRouter.get('/logout', logout);
+usersRouter.post('/convert', convert);
 
 export default usersRouter;

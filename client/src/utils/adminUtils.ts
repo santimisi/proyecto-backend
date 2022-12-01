@@ -24,7 +24,7 @@ export interface cartType {
 // type for regular user
 export interface Usertype {
     _id:string;
-    username:string;
+    userName:string;
     isAdmin: boolean;
     name:string;
     lastName:string;
@@ -69,7 +69,10 @@ export interface FormDataType {
   export interface SigninFormDataType {
     userName:string;
     password:string;
-    isAdmin:boolean
+    isAdmin:boolean;
+    name: string;
+    lastName:string;
+    profilePicture:string;
   }
 
   export interface IsLoggedDataType {
@@ -106,4 +109,13 @@ export const sortArrayDesAsc = (allItems: itemType[], sortDirection:string) => {
 // limit characters displayed
 export const limitText = (string:string,limit:number) => {
     return string.substring(0, limit);
+}
+
+// encuentra numero de admins y regresa int con el numero total de admins
+export const findAllAdmins = (allUsersArray : Usertype[]) => {
+  let counter = 0;
+  allUsersArray.forEach(user => {
+    if(user.isAdmin) counter++
+  })
+  return counter
 }

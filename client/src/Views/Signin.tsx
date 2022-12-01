@@ -10,11 +10,14 @@ export default function Signin() {
   const initialState: SigninFormDataType = {
     userName: "",
     password: "",
-    isAdmin: false
+    isAdmin: false,
+    name: "",
+    lastName: "",
+    profilePicture: ""
   };
 
   const { state, bind } = useForm(initialState);
-  const { userName, password, isAdmin } = state;
+  const { userName, password, isAdmin, name, lastName, profilePicture } = state;
   const navigate = useNavigate();
 
   const onSubmitHandler = async (event: FormEvent<HTMLFormElement>) => {
@@ -63,7 +66,7 @@ export default function Signin() {
                   htmlFor="userName"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Tu username
+                  Tu Username
                 </label>
                 <input
                   {...bind}
@@ -72,7 +75,7 @@ export default function Signin() {
                   name="userName"
                   id="userName"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="username"
+                  placeholder="Username"
                   required
                 />
               </div>
@@ -81,7 +84,7 @@ export default function Signin() {
                   htmlFor="password"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Contraseña
+                  Tu Contraseña
                 </label>
                 <input
                   {...bind}
@@ -89,27 +92,66 @@ export default function Signin() {
                   value={password}
                   name="password"
                   id="password"
-                  placeholder="••••••••"
+                  placeholder="Contraseña"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
                 />
               </div>
-              {/* <div>
+              <div>
                 <label
-                  htmlFor="confirm-password"
+                  htmlFor="password"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Confirma Contraseña
+                  Tu Nombre
                 </label>
                 <input
-                  type="confirm-password"
-                  name="confirm-password"
-                  id="confirm-password"
-                  placeholder="••••••••"
+                  {...bind}
+                  type="text"
+                  value={name}
+                  name="name"
+                  id="name"
+                  placeholder="Nombre"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
                 />
-              </div> */}
+              </div>
+              <div>
+                <label
+                  htmlFor="password"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Tu Apellido
+                </label>
+                <input
+                  {...bind}
+                  type="text"
+                  value={lastName}
+                  name="lastName"
+                  id="lastName"
+                  placeholder="Apellido"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="password"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Tu URL de foto de perfil
+                </label>
+                <input
+                  {...bind}
+                  type="text"
+                  value={profilePicture}
+                  name="profilePicture"
+                  id="profilePicture"
+                  placeholder="Foto"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  required
+                />
+              </div>
+
               <div className="flex items-start">
                 <div className="flex items-center h-5">
                   <input
