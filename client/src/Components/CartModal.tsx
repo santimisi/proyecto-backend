@@ -51,6 +51,7 @@ export default function CartModal({
       });
     }
   };
+
   return (
     <div
       id="checkout-modal"

@@ -7,6 +7,7 @@ import {
 	isLogged,
 	logout,
 	convert,
+	deleteUser,
 } from '../Controllers/usersController.js';
 
 const usersRouter = express.Router();
@@ -18,5 +19,6 @@ usersRouter.post('/login', login);
 usersRouter.get('/islogged', isLogged);
 usersRouter.get('/logout', logout);
 usersRouter.post('/convert', convert);
+usersRouter.delete('/delete/:id', deleteUser);
 
 export default usersRouter;

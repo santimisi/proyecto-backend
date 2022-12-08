@@ -48,7 +48,7 @@ export default function NavBar(): ReactElement {
   };
 
   useEffect(() => {
-    if (!loadingUserInfo) {
+    if (userInfo) {
       if (userInfo.isAuth) {
         setIsLoaded(true);
       }

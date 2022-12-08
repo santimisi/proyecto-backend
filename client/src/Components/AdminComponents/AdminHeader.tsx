@@ -1,19 +1,11 @@
 import axios from "axios";
 import React, { ReactElement } from "react";
-import {
-  IoIosNotificationsOutline,
-  IoMdLogOut,
-  IoMdSearch
-} from "react-icons/io";
+import { IoMdLogOut, IoMdSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useGlobalContext } from "../../utils/globalContext";
 
-interface Props {
-  activityLogs: any;
-}
-
-export default function AdminHeader({ activityLogs }: Props): ReactElement {
+export default function AdminHeader(): ReactElement {
   const navigate = useNavigate();
   const { userInfo, loadingUserInfo } = useGlobalContext();
 
@@ -45,7 +37,6 @@ export default function AdminHeader({ activityLogs }: Props): ReactElement {
       });
     }
   };
-
   return (
     <header className="flex items-center h-20 px-6 sm:px-10 bg-white">
       <button className="block sm:hidden relative flex-shrink-0 p-2 mr-2 text-gray-600 hover:bg-gray-100 hover:text-gray-800 focus:bg-gray-100 focus:text-gray-800 rounded-full">
@@ -97,19 +88,6 @@ export default function AdminHeader({ activityLogs }: Props): ReactElement {
         )}
 
         <div className="border-l pl-3 ml-3 space-x-1">
-          {activityLogs ? (
-            <button className="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full">
-              <span className="sr-only">Notifications</span>
-              <span className="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full"></span>
-              <span className="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full animate-ping"></span>
-              <IoIosNotificationsOutline className="w-6 h-6" />
-            </button>
-          ) : (
-            <button className="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full">
-              <span className="sr-only">Notifications</span>
-              <IoIosNotificationsOutline className="w-6 h-6" />
-            </button>
-          )}
           <button
             onClick={handleLogOut}
             className="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full"

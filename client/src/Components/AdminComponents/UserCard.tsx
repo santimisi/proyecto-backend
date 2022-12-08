@@ -19,6 +19,7 @@ export default function UserCard({
   lastName,
   profilePicture
 }: UserCardProps): ReactElement {
+  // funcion que cambia estatus de user a admin o cliente
   const handleConvert = async (userName: string, _id: string, type: string) => {
     Swal.fire({
       title: `Seguro que quieres cambiar el tipo de cuanta a ${type} `,
@@ -59,9 +60,49 @@ export default function UserCard({
     });
   };
 
+  // boton de borrar usuer
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const handleDeleteUser = (_id: string) => {
+    Swal.fire({
+      title: `Seguro que quieres eliminar a ${userName} `,
+      showDenyButton: true,
+      confirmButtonText: "Eliminar",
+      denyButtonText: `No Eliminar`
+    }).then((result) => {
+      if (result.isConfirmed) {
+        try {
+          axios
+            .delete(`${process.env.REACT_APP_DELETE_USER}/${_id}`)
+            .then((response) => {
+              if (response.data.status === "success") {
+                Swal.fire({
+                  icon: "success",
+                  title: "Borrado!",
+                  text: response.data.message
+                }).then(() => {
+                  window.location.reload();
+                });
+              } else {
+                Swal.fire({
+                  icon: "error",
+                  title: "Algo sucedio, no se pudo eliminar",
+                  text: response.data.message
+                });
+              }
+            });
+          setIsMenuOpen(false);
+        } catch (e) {
+          console.log(e);
+        }
+      } else if (result.isDenied) {
+        Swal.fire("Usuario no borrado", "", "info");
+        setIsMenuOpen(false);
+      }
+    });
+  };
+
   return (
-    <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md ">
+    <div className="w-full max-w-xs bg-white border border-gray-200 rounded-lg shadow-md">
       <div className="flex justify-end px-4 pt-4">
         <button
           id="dropdownButton"
@@ -90,12 +131,12 @@ export default function UserCard({
           >
             <ul className="py-1" aria-labelledby="dropdownButton">
               <li>
-                <a
-                  href="/"
-                  className="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100  "
+                <button
+                  onClick={() => handleDeleteUser(_id)}
+                  className="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 w-full text-left"
                 >
                   Delete
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -113,7 +154,9 @@ export default function UserCard({
         <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
           {userName}
         </h5>
-        <span className="text-sm text-gray-500 dark:text-gray-400">{name}</span>
+        <span className="text-sm text-gray-500 dark:text-gray-400">
+          {name}, {lastName}
+        </span>
         <span className="text-sm text-gray-500 dark:text-gray-400">{_id}</span>
         <div className="flex mt-4 space-x-3 md:mt-6">
           {isAdmin ? (

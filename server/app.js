@@ -10,6 +10,7 @@ import session from 'express-session';
 import productosRouter from './Routers/productosRouter.js';
 import carritoRouter from './Routers/carritoRouter.js';
 import usersRouter from './Routers/usersRouter.js';
+import logsRouter from './Routers/logsRouter.js';
 import {
 	corsConfig,
 	headerConfig,
@@ -39,6 +40,7 @@ app.use(session(sessionOptions));
 app.use('/api/productos', productosRouter);
 app.use('/api/carrito', carritoRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/logs', logsRouter);
 
 // SOCKET IO CONFIG ------
 const socketServer = http.createServer(app);

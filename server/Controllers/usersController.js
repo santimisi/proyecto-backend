@@ -173,3 +173,23 @@ export const convert = async (req, res) => {
 		});
 	} catch (e) {}
 };
+
+export const deleteUser = async (req, res) => {
+	const { id } = req.params;
+	try {
+		await contenedorUsers.deleteOneUser(id);
+		await contenedorLogs.saveOneLog({
+			title: `Se elimino un Usuario con id`,
+			descripcion: id,
+			link: 'url del producto en front',
+		});
+		res.status(200).json({
+			status: 'success',
+			message: 'Usuario Borrado Satisfactoriamente',
+		});
+	} catch (e) {
+		return res
+			.status(500)
+			.json({ status: 'error', message: 'No se pudo borrar usuario' });
+	}
+};

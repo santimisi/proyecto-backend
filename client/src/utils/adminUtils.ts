@@ -119,3 +119,8 @@ export const findAllAdmins = (allUsersArray : Usertype[]) => {
   })
   return counter
 }
+
+export const formatDate = (date : Date) => {
+  const newdate = new Date(date);
+  return newdate.toTimeString().slice(0,-24)
+}

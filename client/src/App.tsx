@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 //todas las vistas para la aplicacion ---
 import ProductGrid from "./Views/ProductGrid";
 import ProductDetails from "./Views/ProductDetails";
-import NotFound from "./Views/NotFound";
+// import NotFound from "./Views/NotFound";
 import Dashboard from "./Views/Dashboard";
 import AllItemsAdmin from "./Components/AdminComponents/AllItemsAdmin";
 import AllCartsAdmin from "./Components/AdminComponents/AllCartsAdmin";
@@ -26,6 +26,7 @@ import { MyGlobalContext } from "./utils/globalContext";
 import Signin from "./Views/Signin";
 import axios from "axios";
 import { IsLoggedDataType } from "./utils/adminUtils";
+import AllLogs from "./Components/AdminComponents/AllLogs";
 
 // ---- de aqui manejo las rutas para poder interactuar con las dinamicas y tener mas limio el codigo ---
 export const ROUTE_PATHS = {
@@ -36,7 +37,8 @@ export const ROUTE_PATHS = {
   Shop: "/shop",
   AllAdminItems: "/dsh/allItems",
   AllAdminCarts: "/dsh/allCarts",
-  AllAdminUsers: "/dsh/allUsers"
+  AllAdminUsers: "/dsh/allUsers",
+  AllAdminLogs: "/dsh/allLogs"
 };
 
 export const navigateToRoute = {
@@ -64,7 +66,8 @@ const App = () => {
     { path: ROUTE_PATHS.Dashboard, element: <Dashboard /> },
     { path: ROUTE_PATHS.AllAdminItems, element: <AllItemsAdmin /> },
     { path: ROUTE_PATHS.AllAdminCarts, element: <AllCartsAdmin /> },
-    { path: ROUTE_PATHS.AllAdminUsers, element: <AllUsersAdmin /> }
+    { path: ROUTE_PATHS.AllAdminUsers, element: <AllUsersAdmin /> },
+    { path: ROUTE_PATHS.AllAdminLogs, element: <AllLogs /> }
   ];
 
   // esto va a hacer el fetch al usuario que este loggeado no importa donde, y luego lo va a meter a estado global para que todo lo pueda obtener

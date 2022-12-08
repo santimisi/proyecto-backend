@@ -17,7 +17,7 @@ export default function Signin() {
   };
 
   const { state, bind } = useForm(initialState);
-  const { userName, password, isAdmin, name, lastName, profilePicture } = state;
+  const { userName, password, name, lastName, profilePicture } = state;
   const navigate = useNavigate();
 
   const onSubmitHandler = async (event: FormEvent<HTMLFormElement>) => {

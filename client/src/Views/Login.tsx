@@ -1,5 +1,5 @@
 import React, { ReactElement, FormEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import img from "../Assets/images/loginbg.png";
 import { useForm } from "../utils/useForm";
 import { LoginFormDataType } from "../utils/adminUtils";
+import { useGlobalContext } from "../utils/globalContext";
 
 export default function Login({ setUserInfo }: any): ReactElement {
   const initialState: LoginFormDataType = {
@@ -17,6 +18,7 @@ export default function Login({ setUserInfo }: any): ReactElement {
   const { state, bind } = useForm(initialState);
   const { userName, password } = state;
   const navigate = useNavigate();
+  const { userInfo } = useGlobalContext();
 
   const onSubmitHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,7 +31,6 @@ export default function Login({ setUserInfo }: any): ReactElement {
           withCredentials: true
         }
       );
-      console.log(response);
       if (response.status === "success") {
         Swal.fire({
           position: "top-end",
@@ -40,14 +41,12 @@ export default function Login({ setUserInfo }: any): ReactElement {
         });
         if (response.type === "admin") {
           setUserInfo(response.userData);
-
           navigate("/dsh");
-
           window.location.reload();
         } else {
           setUserInfo(response.userData);
           navigate("/shop");
-          // window.location.reload();
+          window.location.reload();
         }
       }
     } catch (e: any) {
@@ -60,6 +59,13 @@ export default function Login({ setUserInfo }: any): ReactElement {
       });
     }
   };
+
+  // this will protect the user from going to the login view again
+  if (userInfo) {
+    if (userInfo.isAuth) {
+      return <Navigate to={userInfo.isAdmin ? "/dsh" : "shop"} />;
+    }
+  }
 
   return (
     <>

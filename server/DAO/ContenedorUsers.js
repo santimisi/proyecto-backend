@@ -38,4 +38,12 @@ export class ContenedorUsers {
 			throw new Error('algo sali mal modificar typo de cuenta');
 		}
 	}
+
+	async deleteOneUser(_id) {
+		try {
+			await UsersModel.findByIdAndDelete(_id);
+		} catch (e) {
+			throw new Error('Algo salio mal al borrar usuario');
+		}
+	}
 }

@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../Assets/images/agave.png";
-import { IoMdCube, IoIosCart, IoIosMan } from "react-icons/io";
+import { IoMdCube, IoIosCart, IoIosMan, IoIosBookmarks } from "react-icons/io";
 import { MdOutlineStorefront } from "react-icons/md";
 
 export default function LeftBar(): ReactElement {
@@ -20,6 +20,11 @@ export default function LeftBar(): ReactElement {
       icon: <IoIosMan className="h-6 w-6" />,
       route: "/dsh/allUsers",
       title: "Users"
+    },
+    {
+      icon: <IoIosBookmarks className="h-6 w-6" />,
+      route: "/dsh/allLogs",
+      title: "Logs"
     }
   ];
   return (
