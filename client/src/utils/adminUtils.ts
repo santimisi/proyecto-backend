@@ -82,6 +82,14 @@ export interface FormDataType {
 	isAdmin?: boolean,
   }
 
+  export interface Logtype {
+    _id: string,
+    descripcion:string,
+    title:string,
+    timestamp: Date,
+    url: string,
+  }
+
   
 // get number without commas
 export const numberWithCommas = (number : number) => {

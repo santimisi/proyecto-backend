@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { CartProvider } from "react-use-cart";
@@ -6,27 +7,27 @@ import Swal from "sweetalert2";
 //todas las vistas para la aplicacion ---
 import ProductGrid from "./Views/ProductGrid";
 import ProductDetails from "./Views/ProductDetails";
-// import NotFound from "./Views/NotFound";
+import Signin from "./Views/Signin";
 import Dashboard from "./Views/Dashboard";
+// import NotFound from "./Views/NotFound";
 import AllItemsAdmin from "./Components/AdminComponents/AllItemsAdmin";
 import AllCartsAdmin from "./Components/AdminComponents/AllCartsAdmin";
+import AllLogs from "./Components/AdminComponents/AllLogs";
 //---
 //layout para la todas las paginas ---
 import RegCustomerLayout from "./Components/Layouts/RegCustomerLayout";
 import AdminLayout from "./Components/Layouts/AdminLayout";
 ///------
 // import useLocalStorage from "./utils/LocalStorage";
-
 import Login from "./Views/Login";
 import AllUsersAdmin from "./Components/AdminComponents/AllUsersAdmin";
 import ScrollToTop from "./utils/ScrollToTop";
 
 // --- Global context
 import { MyGlobalContext } from "./utils/globalContext";
-import Signin from "./Views/Signin";
-import axios from "axios";
+
+// ----- Utils --------
 import { IsLoggedDataType } from "./utils/adminUtils";
-import AllLogs from "./Components/AdminComponents/AllLogs";
 
 // ---- de aqui manejo las rutas para poder interactuar con las dinamicas y tener mas limio el codigo ---
 export const ROUTE_PATHS = {

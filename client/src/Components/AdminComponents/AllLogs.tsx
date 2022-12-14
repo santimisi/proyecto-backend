@@ -1,5 +1,5 @@
 import React from "react";
-import { formatDate } from "../../utils/adminUtils";
+import { formatDate, Logtype } from "../../utils/adminUtils";
 import { TApiResponse, useApiGet } from "../../utils/fetchProducts";
 
 export default function AllLogs() {
@@ -36,7 +36,7 @@ export default function AllLogs() {
               </tr>
             ) : (
               <>
-                {activityLogs.map((log: any) => {
+                {activityLogs.map((log: Logtype) => {
                   return (
                     <tr className="bg-white border-b" key={log._id}>
                       <th

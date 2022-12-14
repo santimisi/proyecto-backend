@@ -114,7 +114,7 @@ export const addProductInExistingCart = async (req, res) => {
 				incomingItem
 			);
 			await contenedorLogs.saveOneLog({
-				title: 'Se agrego un nuevo item existente a carrito:',
+				title: 'Se agrego un nuevo item existente a carrito',
 				descripcion: `item: ${incomingItem._id}, carrito Id: ${requestedCartId}`,
 				link: 'url del producto en front',
 			});
@@ -129,7 +129,7 @@ export const addProductInExistingCart = async (req, res) => {
 				incomingItem
 			);
 			await contenedorLogs.saveOneLog({
-				title: 'Se agrego un nuevo item NO existente a carrito:',
+				title: 'Se agrego un nuevo item NO existente a carrito',
 				descripcion: `item: ${incomingItem._id}, carrito Id: ${requestedCartId}`,
 				link: 'url del producto en front',
 			});
@@ -154,7 +154,7 @@ export const deleteItemInCart = async (req, res) => {
 	try {
 		await contenedorCarritos.deleteOneItemInCart(requestedCartId, itemId);
 		await contenedorLogs.saveOneLog({
-			title: 'Se borro un item en carrito:',
+			title: 'Se borro un item en carrito',
 			descripcion: `item: ${itemId}, carrito Id: ${requestedCartId}`,
 			link: 'url del producto en front',
 		});

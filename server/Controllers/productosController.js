@@ -38,7 +38,7 @@ export const addOne = async (req, res) => {
 	try {
 		await contenedorProductos.saveOneProduct(req.body);
 		await contenedorLogs.saveOneLog({
-			title: `"Se agrego un item nuevo:`,
+			title: `Se agrego un item nuevo`,
 			descripcion: req.body.nombre,
 			link: 'url del producto en fron',
 		});
@@ -59,7 +59,7 @@ export const modifyOne = async (req, res) => {
 	try {
 		await contenedorProductos.editOneProduct(newItemData, id);
 		await contenedorLogs.saveOneLog({
-			title: `Se modifico un item:`,
+			title: `Se modifico un item`,
 			descripcion: id,
 			link: 'url del producto en fron',
 		});
@@ -79,7 +79,7 @@ export const deleteOne = async (req, res) => {
 	try {
 		await contenedorProductos.deleteOneProduct(id);
 		await contenedorLogs.saveOneLog({
-			title: `Se elimino un item:`,
+			title: `Se elimino un item`,
 			descripcion: id,
 			link: 'url del producto en fron',
 		});
