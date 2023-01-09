@@ -1,20 +1,21 @@
-# Proyecto Final
+# Express Session + Passport JS + React Js 
 
-## Acerca del Proyecto
+## Acerca de la app
 
-Aquí encontrarás el proyecto final para las lecciones de Desarrollo de Back-End por CoderHouse.
+Aplicación que se ha venido construyendo con base a los desafios asignados.
 
 ### Contruido con
 
-- Javascript
+- React Js
 - Node.js
 - Express
-- Typescript
-- React
+- Passport
+- Express Session
+- pm2
 
-### Se necesita Node para correr este programa.
+### Se necesita Node
 
-Así lo puedes instalar
+Así puedes instalar node
 
 - npm
   ```sh
@@ -25,46 +26,30 @@ Así lo puedes instalar
 
 1. Clonar el repositorio
    ```sh
-   git clone https://github.com/G-Linares/js-exericse
+   git clone https://github.com/omarurregodev/desafio_login_auth
    ```
 2. Instalar Paquetería en Client
    ```sh
    cd client
    npm install
    ```
-3. Crear archivo .env similar al .env.example dentro de la carpeta "server", pssst el user y pass son "dev" y "dev"
-4. Instalar Paquetería en Server
+3. Instalar Paquetería en Server
    ```sh
    cd server
    npm install
    ```
-5. Iniciar Server
+4. Crear archivo .env en carpeta ./server el archivo tiene que tener las mismas variables que .env.example si no se va a mover nada de puertos puedes copiar y pegar a tu archivo .env creado. Ahi encontraras las variables necesarias tales como URL de Mongo y puertos.
+
+5. Iniciar Server Side
 
    ```sh
    cd server
-   npm start
+   pm2 start app.js --name="SeverClusterApp" -i max --watch -- 8000
    ```
 
-6. Iniciar Client
-   ```sh
-   cd client
-   npm start
-   ```
+6. Iniciar Client side
 
-### Se tienen dos tips de app, admin y tienda normal.
-
-## Roadmap
-
-- [x] Entregable 1
-- [x] Entregable 2
-- [ ] Entregable 3
-- [ ] Entregable 4
-- [ ] Entregable 5
-- [ ] Entregable 6
-
-### Faltantes
-
-- validar que el timeout de la cookie permita mandar requests o regresar a login en caso de que se quite
-- agregar vista para modificar usuario en parte de admin
-- agregar vista para logs de modificaciones hechas por admin
-- agregar mas productos a la BD
+```sh
+cd client
+npm start
+```
